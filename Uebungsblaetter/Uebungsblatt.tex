@@ -1,0 +1,76 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{mathtools} 
+\usepackage{mathrsfs} 
+\usepackage{dsfont}
+\usepackage{enumitem}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
+\newcommand{\E}{\mbox{I\negthinspace E}}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+
+\title{Übungen zur Wahrscheinlichkeitstheorie}
+\author{Alexander Ritz}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+
+\item Aufgabe 
+\begin{enumerate}[label=(\roman*)]
+
+\item Geben Sie die kleinste und größte $\sigma$-Algebra in einer Menge $\Omega$ an.
+
+\item Bestimmen Sie alle $\sigma$-Algebren in der vierelementigen Menge $\Omega_4:=\{a, b, c, d\}$.
+
+\item\textbf{Sikzzieren} Sie eine $\sigma$-Algebra in der Menge $\Omega_5:= \left[0, 5 \right]$.
+
+\item Was fällt auf beim Vergleich der $\sigma$-Algebren aus (ii) und (iii)?
+
+\end{enumerate}
+
+
+\item Aufgabe \\
+Seien $\mathscr{A}$ und $\mathscr{B}$ zwei $\sigma$-Algebren in $\Omega$ mit $\mathscr{A} \in \mathscr{B}$.
+\begin{enumerate}[label=(\roman*)]
+
+\item Zeigen Sie, dass aus der $\mathscr{A}$-Messbarkeit von $f:\Omega \to \mathbb{R}$ die $\mathscr{B}$-Messbarkeit folgt.
+
+\item Zeigen Sie, dass eine Indikatorfunktion $\mathds{1}_M:\Omega \to \mathbb{R}$ genau dann $\mathscr{A}$messbar ist, wenn $M \in \mathscr{A}$ gilt.
+
+\item Seien $f, g: \Omega\to \mathbb{R}$ $\mathscr{A}$-messbare Funktionen. Zeigen Sie, dass die Mengen \[\{f < g\}, \{f \leq g\}, \{f = g\}\text{ und }\{ f \neq g\}\] in $\mathscr{A}$ liegen.\footnote{Dabei gelte die in der Statistik gängige Notation: $\{f < g\} = \{\omega \in \Omega \mid f(\omega) < g(\omega)\}$}
+
+
+\end{enumerate}
+
+\item Aufgabe \\
+Seien $f, g: \Omega\to \mathbb{R}$ $\mathscr{A}$-messbare Funktionen.  Beweisen Sie:
+\begin{enumerate}[label=(\roman*)]
+
+\item $\alpha + \beta \cdot g$ ist $\mathscr{A}$-messbar ($\alpha, \beta \in \mathbb{R}$).
+
+\item $f + g$ ist $\mathscr{A}$-messbar.
+
+\item $f ^2$ ist $\mathscr{A}$-messbar.
+
+\item $f \cdot g$ ist $\mathscr{A}$-messbar.
+
+\end{enumerate}
+
+
+\item Aufgabe \\
+Beschreiben Sie die \glqq Elemente\grqq(oder auch Bestandteile) einer Zufallsvariablen und eines zugeordneten Wahrscheinlichkeitsraumes. Erläutern Sie die Notwendigkeit des Konzepts der Messbarkeit explizit.\\ \textit{Hinweis}: Gehen Sie auch auf die Begriffe \glqq Ereignis\grqq und \glqq Ergebnis\grqq ein.
+
+
+\end{enumerate}
+\end{document}

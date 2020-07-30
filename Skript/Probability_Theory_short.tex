@@ -1,0 +1,354 @@
+\documentclass[12pt]{article} 
+
+\usepackage[utf8]{inputenc} 
+
+
+\usepackage[margin=3.3cm]{geometry} 
+\geometry{a4paper} 
+\usepackage[parfill]{parskip} 
+
+
+\usepackage{graphicx} 
+\usepackage{booktabs}
+\usepackage{array} 
+\usepackage{paralist} 
+\usepackage{verbatim} 
+\usepackage{mathtools}
+\usepackage[hidelinks]{hyperref}
+\usepackage{german}
+
+\urlstyle{same}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{setspace}
+\usepackage{eurosym}
+\usepackage{listings} 
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tablefootnote}
+
+\usepackage{mathtools} 
+\usepackage{mathrsfs} 
+
+\usepackage{fancyhdr} 
+\pagestyle{fancy} 
+\renewcommand{\headrulewidth}{0pt} 
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape}
+
+
+\usepackage[nottoc,notlof,notlot]{tocbibind} 
+\usepackage[titles]{tocloft} 
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} 
+\usepackage{setspace}
+\onehalfspacing
+
+\newtheorem{definition}{Definition}
+
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
+\newcommand{\E}{\mbox{I\negthinspace E}}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+
+\title{Basics of probability theory}
+\author{Alexander Ritz}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\pagenumbering{arabic}
+
+\section{Preface}
+The following introduction is meant to be a very basic overview of the most relevant theoretical concepts utilised in the field of statistics. For a more useful, thorough introduction and the more technical formalisations, the book \textbf{Measure Theory: Second Edition} by Donald L. Cohn is wholeheartedly recommended. More advanced texts can be recommended to enthusiastic students on request, since recommendations on an individual basis are likely to result in higher long-term satisfaction... or rather fewer regrets about money ill-spent.\\
+This text is heavily inspired by the very insightful work of Dr. Klaus Schindler, especially his mathematically inspiring lecture \glqq Mathematics D: Pricing of Financial Derivatives\grqq .
+\newline
+Suggestions, corrections and questions regarding this script can be addressed at alexander.ritz@stud.uni-goettingen.de
+\newpage
+
+\section{Sample spaces}
+
+Let $\Omega$ denote the set of all potential outcomes or results $\omega$ of a random experiment. The
+set $\Omega$ is usually called sample space or possibility space, subsets of $\Omega$ 
+ are called events. Given an outcome $\omega$, we say, \glqq The event A was realised\grqq ,
+if $\omega \in A$ holds. In case $\omega \notin A$ we say, \glqq The event A was not realised\grqq . An outcome is called known, if it was either realised or not realised.
+
+\section{$\sigma$-algebras}
+The realisation of an outcome $\omega$ does not just contain information about the occurence of singular outcomes, but more complex composite outcomes \footnote{This information-theoretic interpretation of $\sigma$-algebras was established by the German mathematician Klaus Schindler.}. Are $A$ and $B$ known outcomes, then set-theoretic reasons imply the knowledge of further outcomes. For example $A^{\mathrm{C}}$, $A \cap B$ or $A \cup B$. A system $\mathscr{A}$ of
+observable results which adheres to these more or less intuitive set-theoretic properties is called $\sigma$-algebra. More formally: \\
+
+A system $\mathscr{A}$ of subsets of $\Omega$ is called $\sigma$-Algebra in $\Omega$, if it has the following properties:
+\begin{itemize}
+\item{$\Omega \in \mathscr{A}$}
+\item{$A \in \mathscr{A} \implies A^{\mathrm{C}} \in \mathscr{A}$}
+\item{$A_1, A_2, A_3, ... \in \mathscr{A} \implies \bigcup\limits_{l \in \mathbb{N}} A_l \in \mathscr{A}$}
+\end{itemize}
+A tuple $(\Omega, \mathscr{A})$, consisting of a sample space $\Omega$
+ and a $\sigma$-algebra $A \subset \mathcal{P}(\Omega)$ is called measure space.\footnote{Please note that this \glqq stability over unions\grqq (the last property) only holds in case of a countable number of unions! Uncountable unions of elements of $\sigma$-algebra $\mathscr{A}$ do not generally lie in $\mathscr{A}$ as well! Appropriate caution is therefore recommended when working at the interface of discrete and continuous random variables.}
+
+\section{Probability spaces}
+Although it is usually impossible to tell which outcomes are going to be realised, it is very often possible to give an opinion of the likelihood of an outcome in a specific
+$\sigma$-algebra, given its relative plausability. This can be formalised by assigning numeric values between $0$ and $1$,which are then called probability. If
+$A \subset \Omega$ is an event, then $P(A)$ denotes the probability of $A$ being realised. The function $P$ is called probability measure. Based on set-theoretic\footnote{One could more correctly speak of \textit{measure}-theoretic.} considerations it is sensible to demand certain properties from this measure. Are $A$ und $B$ disjoint events, then
+$P(A \cup B) = P(A)+P(B)$ should hold. Additionally, the probabilities of all events in the given $\sigma$-algebra should be calculable. These considerations lead to the following definition.\\
+
+Let $\mathscr{A}$ be a $\sigma$-algebra in the sample space $\Omega$. A function $P : \mathscr{A} \to [0, 1]$ is called probability measure
+on $\mathscr{A}$, if
+\begin{itemize}
+\item{$P(\Omega) = 1$}
+\item{$P$ is $\sigma$-additive, that is, for all sequences of pairwise disjoint sets $A_1, A_2, . . .$ holds: \[
+P\left( \dot{\bigcup\limits_{i \in \mathbb{N}}}A_i \right) = \sum_{i \in \mathbb{N}}P(A_i)
+\]}
+\end{itemize}
+The triple $(\Omega, \mathscr{A}, P)$ is called probability space.
+
+\section{Random Variables and Measurability}
+As general and elegant as the concept of probability spaces is\footnote{This basic axiomatic model was established by the Russian mathematician Andrei Kolmogoroff.}, it does not lend itself to applicability, since a complete determination of the entire sample space $\Omega$
+is generally impossible or impractical due to the complexity involved. One is therefore going to restrict the model to the relevant data and outcomes that are of particular interest.
+These quantities, for example stock prices or temperatures, with values depending upon the random future outcomes are called random quantities.
+
+A function on the sample space $\Omega$ \[
+X : \Omega \to \mathbb{R}^d \quad \text{  with  }\quad \omega \mapsto X(\omega)
+\]
+is called random quantity. In case of $d=1$ $X$ is called a random variable. In case of
+$d>1$ $X$ is a vector of random variables, that is $X = (X_1, . . . , X_d)$. In that case, $X$ is called $d$-dimensional random vector.\footnote{Please note that this definition was restricted to the case of real valued random quantities, for reasons of ease of understanding. The concept is trivially generalised though.}
+\\
+Instead of modelling every single potential event one is going to restrict oneself to those which are related to a given random quantity $X$. Because of the unpredictable stochastic nature of our environment, it is sensible to examine the realisation of intervals of potential values of $X$ instead of singular points. Of predominant  interest are events in $\Omega$, for which $X$ assumes values within a specific interval, the preimage or inverse image \[
+X^{-1}(\left] -\infty, z \right] ) = \{ \omega \in \Omega \mid -\infty < X(\omega) \leq z \} =: \{ X \leq z \}
+\]
+One can only call a random variable $X$ \glqq manageable\grqq if these events are observable or \glqq measurable\grqq, i.e. if their probability is calculable.
+Formally, this means that they have to be elements of the domain of definition of the probability measure.
+This would make them elements of the related $\sigma$-algebra. Measurability is often seen as a necessary property of random quantities,
+and we will assume measurability in future applications involving random variables, unless otherwise stated.
+
+A random quantity $X : \Omega \to \mathbb{R}^d $ is called measurable with respect to the $\sigma$-algebra $\mathscr{A}$, if:
+\[
+\forall z \in \mathbb{R}^d : \{X \leq z\} \in \mathscr{A}
+\]
+with $\{X \leq z\} \in \mathscr{A}$ being shorthand for the set of outcomes $\omega \in \Omega$, for which the function $X = (X_1, . . . , X_d)$ results in values below $z = (z_1, . . . , z_d)$, i.e.:
+\[
+\{X \leq z\} = \{\omega \in \Omega \mid X(\omega) \leq z\} = \{\omega \in \Omega \mid X_1(\omega)\leq z_1, ..., X_d(\omega)\leq z_d\}
+\]
+
+\section{Distribution of Random Variables}
+Let $X: \Omega \to \mathbb{R}^d$ be a measurable random variable on the measure space $(\Omega, \mathscr{A})$. The probabilities of \textit{all} events belonging to $X$ as a whole are called \textit{probability distribution} or \textit{cumulative distribution} of the random variable $X$. The entire distribution is determined by the function:
+\begin{align}
+F_X: \mathbb{R}^d &\to \left[ 0, 1\right] \\
+z &\mapsto F_X(z):= P(\{X \leq z\}) = P(\{X_1 \leq z_1, \dots , X_d \leq z_d\}),
+\end{align}
+leading to $F_X$ being called \textit{distribution function} of $X$. $F_X(z)$ denotes the probability of $X$ assuming values lying within the d-dimensional interval $\left] - \infty , z_1\right] \times \dots \times \left] -\infty , z_d\right]$. In case the distribution function is differentiable, $F_X^{\prime}$ is called \textit{probability density} or just \textit{density} of $X$. \\
+Distribution functions offer an especially easy method for calculating probabilities of the structure $P(\{ a < X \leq b\})$. Using \textit{Riemann-Stieltjes integrals} (see Appendix), one can write:
+\[
+P(\{ a < X \leq b\}) = F_X(b) - F_X(a) = \int_a^b \diff F_X(z)
+\]
+Given that $F_X$ is continuous. \\
+In case $F_X$ is differentiable, the probabilities can be given as:
+\[
+\int_a^b \diff F_X(z) = \int_a^b F^{\prime}_X(z)\diff z
+\]
+Under the further restriction that $F_X^{\prime}$ be continuous, the following holds for infinitesimal changes $\diff z$:
+\[
+P(\{ z < X \leq z + \diff z\} ) = F_X(z + \diff z) - F_X(z) = F^{\prime}_X(z)\diff z = \diff F_X(z)
+\]
+Accordingly the density $F_X^{\prime}$ can be said to measure the chance  of $X$ assuming a value within a small environment of $z$. It can \textit{not} be understood as the probability of $X$ taking the value $z$. As for continuous $F_X^{\prime}$, the fundamental theorem of calculus offers the insight that:
+\[
+P(\{ X=z\}) = \int_z^z F_X^{\prime} (t)\diff t = F_X (z) - F_X(z) = 0
+\]
+A rather convincing argument against the interpretation as a probability can also be encountered when considering the density of normal or log-normal random variables, which can take values strictly greater than $1$. \\
+The distribution $F_X$ of a random variable $X$ is commonly called \textit{pushforward measure}\footnote{More elegantly called \glqq Bildmaß\grqq \ in German.} of $P$ under $X$. It is then denoted as $P_X$ or $X(P)$, since $X$ \glqq transports \grqq the probability measure $P$ onto the real numbers. Meaning that
+\[
+P_X(\left[ a, b\right]) := P(\{a < X \leq b\}) = \int_a^b \diff F_X (z)
+\]
+defines a probability measure on the $\sigma$-algebra generated by the real-valued intervals\footnote{Or rather cuboids in the general case.}, i.e. on the \textit{Borel sets}. All integrals related to $P_X$ can be calculated with the help of the Riemann-Stieltjes integrals generated by the distribution function $F_X$. Therefore, the concept of distributions allows transferring the work with multiple random variables (on potentially differing sample spaces $\Omega$) onto a common, shared space. If a density $f$ exists, meaning $P_X(\left] a, b\right]) = \int_a^b \diff P_X(z)= \int_a^b \diff F_X(z) = \int_a^b f (z)\diff z$, then we can note this in the form of
+\[
+\diff P_X (z) = f (z) \diff z
+\]
+or
+\[
+\frac{\diff P_X(z)}{\diff z} = f (z)
+\]
+The exact conditions under which a density $f$ with $\diff Q = f \diff P$ exists for two measures $Q$ and $P$ can be found in the \textit{Radon-Nikodym theorem}\footnote{The theorem can be found in the appendix, but the mathematics involved are too elaborate to be detailed here.}.
+
+\section{Moments of random variables}
+\textit{Moments} are characteristic quantities of random variables. The most important moments routinely encountered in statistics are the \textit{expected value} and \textit{variance}. In general, expected value and variance are not sufficient to determine a distribution uniquely, but they are nonetheless capable of giving a first impression of a distribution.\\
+Due to the obvious impossibility of determining the value a non-deterministic quantity is about to assume, the utilisation of a \glqq mean\grqq \ value seems intuitive.
+For a deterministic function $F: \mathbb{D} \to \mathbb{R}$ with a finite domain $\mathbb{D} = \{ x_1, \dots , x_n\}$, this would be the sum of the function values weighted by their relative frequency\footnote{Being $\frac{1}{n}$ for all $x_k$ in the case of a deterministic function.}
+\[
+\bar{f}:= \frac{1}{n} \sum_{k = 1}^{n}f(x_k)
+\]
+In the case of an infinite domain $\mathbb{D} = \left[ a, b \right]$ $\bar{f}$ assumes the form of an integral accordingly. The weighting \glqq factor\grqq \ now being $\frac{\diff x}{b - a}$:
+\[
+\bar{f} := \frac{\diff x}{b - a} \int_a^b f(x) \diff x
+\]
+Appropriating this concept in the stochastic case by replacing the relative frequency with the probability of a particular value being assumed, $P(\{z < X \leq z + \diff z\}) = F_X(z + \diff z) - F_X (z) = \diff F_X(z)$, gives
+\[
+\bar{X} := \int_\mathbb{R} z \diff F_X(z)
+\]
+
+Accordingly, the expected value $\E (X)$ of a random variable $X$ is defined as its mean function value\footnote{The more commonly associated form of the integral can be found within the appendix, under the definition of the Riemann-Stieltjes integral.}
+\[
+\E (X) = \int_{\mathbb{R}^d } z \diff F_X(z)
+\]
+The variance $\Var (X)$ of a random variable $X$ is a measure of the strength of dispersion around the average value of $X$. It is defined as the quadratic deviation of $X$ from its expected value, i.e.
+\[
+\Var (X) = \E (\mid X - \E (X) \mid ^2)
+\]
+The variance, being defined as a quadratic quantity, differs in its unit of measurement from $X$ \footnote{The definition relying on the quadratic deviation instead of absolute deviation can be explained by the non-differntiability of the absolute value function. There are however drawbacks to this convention as well.}. A better intuition of the strength of dispersion can be had by examining the \textit{standard deviation} $s(X)$
+\[
+s(X) := \sqrt{\Var (X)}
+\]
+
+\appendix
+
+\section{Prerequisite Knowledge}
+The following two sections will give a very brief overview of the necessary concepts relating to set theory and formal logic\footnote{We will ignore the intricacies of different branches of logic and rely on a basic sketch of\textit{ First-order logic}, also known as \textit{predicate logic}, \textit{quantificational logic} or \textit{first-order predicate calculus}.}, while the section following these gives a definition of continuity of functions. The set theory should mostly be familiar from school or earlier university experiences, while the formal logic is restricted to a summary of the usual notation required in order to be able to write mathematical statements with sufficient clarity and succinctness, i.e. defining quantifiers. Students confident in their mathematical literacy can therefore skip these sections without missing out on any mathematical pearls of wisdom.
+\subsection{Formal logic}
+\subsubsection{Logical connectives}
+\textit{Logical connectives}\footnote{Called \glqq Junktoren\grqq \ in German.} are operators joining singular \textit{propositions} into a compound proposition, with the truth of the compound proposition relying exclusively on the original component propositions.\\ A trivial example would be the connecting of the propositions \glqq Earth is round.\grqq \ and \glqq Earth is flat.\grqq \ , the first proposition being true and the second being false\footnote{Interestingly, not as uncontroversial an example as one would hope.}. One can now join these propositions with e.g. the logical connective \textit{and}. The resulting compound proposition being \glqq Earth is round and Earth is flat\grqq, which would intuitvely be seen as a false proposition, given its contradictory nature. The usually defined logical connectives are
+\begin{itemize}
+\item $\land$, being read as \textit{and}.
+
+\item $\lor$, being read as \textit{or}.
+
+\item $\neg$, being read as \textit{not}.
+
+\item $\implies$, being read as \textit{implies}.
+
+\item $\iff$, being read as \textit{if and only if}.
+\end{itemize}
+
+\subsubsection{Quantifiers}
+In order to permit a short way of writing statements like \glqq For all $x \dots$ holds\grqq \ or \glqq There exist $x \dots$ such that\grqq, one defines \textit{quantifiers}, namely the \textit{universal} quantifier $\forall$ and the \textit{existential} quantifer $\exists$.
+\[
+\forall x \in \mathbb{D} : p(x) 
+\]
+can be read as \glqq For all $x$ in $\mathbb{D}$, $ p(x)$ holds.\grqq .
+\[
+\exists x \in \mathbb{D} : p(x) 
+\]
+can be read as \glqq There exists an $x$ in $\mathbb{D}$ such that $p(x)$ holds.\grqq .\\
+It is particularly important to familiarise oneself with quantifiers as many mathematical statements involve a combination of quantifiers.
+\[
+\forall x \in \mathbb{D} \ \exists y \in \mathbb{W} : x = y^2 
+\]
+can be read as \glqq For all $x$ in $\mathbb{D}$ there exists at least one $y \in \mathbb{W}$ such that $x = y^2$ holds.\grqq .
+\[
+\exists x \in \mathbb{D} \ \forall y \in \mathbb{W} : x = y^2 
+\]
+can be read as \glqq There exists at least one $x$ in $\mathbb{D}$ for all $y \in \mathbb{W}$ such that $x = y^2$ holds.\grqq .
+
+\subsection{Basic set theory}
+A \textit{set} $M$ is a collection of well-defined objects, which are called \textit{elements} of the set. An element $m$ of the set $M$ is denoted as $m \in M$. If $m$ is not an element of $M$, this is written as $m \notin M$. It is a widespread convention to denote sets with upper case letters and its elements with lower case letters. \\
+Sets can be defined in several ways:
+\begin{itemize}
+\item Explicit construction of the set, i.e. listing of the contained elements seperated by commas and framed by curly brackets. The order of the elements holds no importance and multiple listings of elements remains without consequence. Such that the set of all letters contained in the word \glqq trivial\grqq \ can be written like so:
+\[
+\{ r, i, v, t, a, l\} = \{ l, t, a, v, i, r\} = \{ v, i, r, l, a , t, v\}
+\]
+\item  Implicit construction of the set, i.e. giving properties $P_1, P_2, \dots , P_n$ and constructing the set $M$ of all objects satisfying these properties. Written like this:
+\[
+M:= \{ x \mid P_1(x) \land P_2(x)\land \dots \land P_n(x)\},
+\]
+which can be read as, \glqq The set $M$ of all $x$ with the properties $P_1, P_2, \dots , P_n$\grqq .
+\end{itemize}
+The \textit{empty set}, which does not contain any elements, is denoted by $\emptyset$. It can be constructed implicitly by demanding properties which are not satisfied by any $x$, e.g. the set $\{ x \in \mathbb{N} \mid 0 < x < 1\}$.
+
+It is important to note that the set $\{ a\}$, meaning the set containg nothing but the element $a$, is not the same as the element $a$. Just like a box containing a hat is not the same as the hat itself.
+
+A non-empty set is called \textit{finite}, if it contains only finitely many elements; $\mid M\mid$ denoting the number of elements.
+
+In order to avoid running afoul of \textit{Russel's paradox}\footnote{In German called \glqq Russelsche Antimonie\grqq.}, one usually defines a relative universal set $G$ which contains all elements of the interest. A set  $A$ is then called \textit{subset} of $B$, if:
+\[
+\forall x \in G : (x \in A \implies x \in B),
+\]
+which is then denoted by $A \subset B$.
+The equality of two sets is accordingly defined as 
+\[
+\forall x \in G : (x \in A \iff x \in B),
+\]
+denoted by $A = B$
+It is important to note that this definition of the subset relation does not exclude the possibility of $A$ and $B$ being equal. A multitude of texts therefore define the given symbol for the case of \textit{strict} subsets, and define the symbol $\subseteq$ for the case of possible equality. 
+
+For sets $A$, $B$ and $C$, it holds
+\begin{itemize}
+\item $A \subset A$
+\item $(A = B) \iff (A \subset B)\land (B \subset A)$
+\item $(A \subset B) \land (B \subset C) \implies (A \subset C)$
+\item $\emptyset \subset A$
+\end{itemize}
+The power set of a set $A$ is given by 
+\[
+\mathcal{P}(A) := \{M \mid M \subset A\},
+\]
+being the set of all subsets $M$ of $A$.
+It holds that $\mid \mathcal{P}(A)\mid = 2^{ \mid A\mid}$.
+
+The \textit{union} of sets $A_1, \dots , A_n$ is defined as
+\[
+\bigcup\limits_{i = 1}^{n} A_i := \{x \mid \exists i \in \{1, \dots , n\} : x \in A_i\}
+\]
+while the \textit{intersection} of sets $A_1, \dots , A_n$ is defined as
+\[
+\bigcap\limits_{i = 1}^{n} A_i := \{x \mid \forall i \in \{1, \dots , n\} : x \in A_i\}
+\]
+Two sets are called \textit{disjoint}, if their intersection is equal to the empty set.
+The \textit{set difference} between tow sets $A$ and $B$ is defined as 
+\[
+A\setminus B := \{x \in A \mid x \notin B\}
+\]
+
+\subsection{Continuity of functions}
+Ignoring certain mathematical technicalities, a function $f : \mathbb{D} \to \mathbb{R}^M$ with $\mathbb{D} \subset \mathbb{R}^N$, $N, M \in \mathbb{N}$ is called continuous in $x_0$, if
+\[
+x_0 \in \mathbb{D} \text{ and } \lim_{x \to x_0} f(x) = f(x_0) = f(\lim_{x \to x_0} x)
+\]
+$f$ is then called continuous on $\mathbb{D}$ if $f$ is continuous in all points of $\mathbb{D}$.
+
+\section{Integration theory and Radon-Nikodym theorem}
+Both of the following sections of the appendix are made available for the sake of completeness and out of mathematical fervor, it is not necessary for a sufficient understanding of the main text. The most immediately useful parts should be the summary of properties of Riemann-Stieltjes integrals. While the Radon-Nikodym theorem is of utmost relevance, it might leave a rather abstract impression on readers unfamiliar with measure theory.
+
+\subsection{Riemann-Stieltjes integral}
+For two functions $f, \alpha : \left[ a, b\right] \to \mathbb{R}$ and a partition $\mathscr{P} := \{ t_0, t_1, \dots , t_n\}$, one may choose $k = 0, 1, \dots, n-1$ points $\tau_k \in \left[ t_k, t_{k+1}\right]$ and construct:
+\[
+I(\mathscr{P}, \tau_k):= \sum_{k = 0}^{n - 1} f(\tau_ k)\cdot (\alpha (t_{k + 1}) - \alpha (t_k))
+\]
+If $I(\mathscr{P}, \tau_k)$ converges toward the limit $I$ for $ \max_k (t_{k+1}-t_k) \to 0$,  independent of the choice of either $\mathscr{P}$ and $\tau_k$, then $I$ is called Riemann-Stieltjes integral of $f$. It is written as 
+\[
+I = \int_a^b f(t) \diff \alpha (t)
+\]
+When $\alpha (t) = t$, the Riemann integral is obtained as a special case.
+
+If $f$ is continuous on $\left[ a, b\right]$ and $\alpha$ is differiantiable with bounded derivative, it holds that
+\[
+\int_a^b f(t) \diff \alpha (t) = \int_a^b f(t) \cdot \alpha^{\prime} (t) \diff t
+\]
+, which leads to the usual formula given for the expected value:
+\[
+\E (X) = \int_{\mathbb{R}^d } z \diff F_X(z) = \int_{\mathbb{R}^d } z \cdot F_X^{\prime}(z)\diff z
+\]
+
+\subsection{Radon-Nikodym theorem}
+Let $\lambda$ and $\mu$ be two positive measures on the measure space $(\Omega , \mathscr{A})$ with
+\begin{itemize}
+\item $0 < \mu (\Omega ) < \infty$ and $0 < \lambda (\Omega ) < \infty$
+\item $\lambda$ being absolutely continuous\footnote{A stronger property than \glqq simple\grqq \ continuity of a function.} w.r.t $\mu$, i.e. $\mu (A) = 0 \implies \lambda (A) = 0$ for all $A \in \mathscr{A}$.
+\end{itemize}
+Then a non-negative $\mathscr{A}$-measurable function $h$ exists on $\Omega$, such that
+\[
+\forall A \in \mathscr{A} : \lambda (A) = \int_A h \diff \mu
+\]
+In particular, it holds for all measurable functions that
+\[
+\int f \diff \lambda = \int f \cdot h \diff \mu
+\]
+Oftentimes the theorem is stated with the shorter notation of $\lambda = h \cdot \mu$ and $h$ being called the density of $\lambda$ w.r.t. $\mu$. Based on its construction, $h$ is also called \textit{Radon-Nikodym derivative}, which is then written as $h = \frac{\diff \lambda}{\diff \mu}$ . This is only natural since the function can be easily related to a derivative as defined within calculus. \\
+It should be noted that the function $h$ satisfying the property above is uniquely defined \textit{up to a $\mu$-null set}. Meaning that another function $f$ satisfying the property will be equal to $h$ $\mu$-almost everywhere.
+
+\end{document}

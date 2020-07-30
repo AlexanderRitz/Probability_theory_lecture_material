@@ -1,0 +1,131 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{mathtools} 
+\usepackage{mathrsfs} 
+\usepackage{dsfont}
+\usepackage{enumitem}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
+\newcommand{\E}{\mbox{I\negthinspace E}}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+
+\title{Lösungen zur Wahrscheinlichkeitstheorie}
+\author{Alexander Ritz}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+
+\item Aufgabe 
+\begin{enumerate}[label=(\roman*)]
+
+\item $\mathscr{A}_{min} = \{\emptyset, \Omega\}$, $\mathscr{A}_{max} = \mathcal{P}(\Omega)$, insofern existent.
+
+\item $\mathscr{A}_{1} = \{\emptyset, \Omega_4\}$ \\ $\mathscr{A}_{2} = \{\emptyset, \Omega_4, \{a\}, \{b, c, d\}\}$ \\ $\mathscr{A}_{3} = \{\emptyset, \Omega_4, \{b\}, \{a, c, d\}\}$ \\ $\mathscr{A}_{4} = \{\emptyset, \Omega_4, \{c\}, \{a, b, d\}\}$ \\ $\mathscr{A}_{5} = \{\emptyset, \Omega_4, \{d\}, \{a, b, c\}\}$ \\ $\mathscr{A}_{6} = \{\emptyset, \Omega_4, \{a, b\}, \{c, d\}\}$ \\ $\mathscr{A}_{7} = \{\emptyset, \Omega_4, \{a, c\}, \{b, d\}\}$ \\ $\mathscr{A}_{8} = \{\emptyset, \Omega_4, \{a, d\}, \{b, c\}\}$ \\ $\mathscr{A}_{9} = \{\emptyset, \Omega_4, \{a\}, \{b\} \{c, d\}, \{b, c, d\} \{a, c, d\}, \{a, b\}\}$ \\ $\mathscr{A}_{10} = \{\emptyset, \Omega_4, \{a\}, \{c\} \{b, d\}, \{b, c, d\} \{a, b, d\}, \{a, c\}\}$ \\ $\mathscr{A}_{11} = \{\emptyset, \Omega_4, \{a\}, \{d\} \{b, c\}, \{b, c, d\} \{a, b, c\}, \{a, d\}\}$ \\ $\mathscr{A}_{12} = \{\emptyset, \Omega_4, \{b\}, \{c\} \{a, d\}, \{a, c, d\} \{a, b, d\}, \{b, c\}\}$ \\ $\mathscr{A}_{13} = \{\emptyset, \Omega_4, \{b\}, \{d\} \{a, c\}, \{a, c, d\} \{a, b, c\}, \{b, b\}\}$ \\ $\mathscr{A}_{14} = \{\emptyset, \Omega_4, \{c\}, \{d\} \{a, b\}, \{a, b, d\} \{a, b, c\}, \{c, d\}\}$ \\ $\mathscr{A}_{15} = \mathcal{P}(\Omega_4)$ 
+
+\item Skizzieren des Konzepts trivial.
+
+\item Offensichtlich.
+
+\end{enumerate}
+
+
+\item Aufgabe
+
+\begin{enumerate}[label=(\roman*)]
+
+\item Trivial, da aus Definition direkt folgend: $f$ ist $\mathscr{A}$-messbar, daher: \[
+\{f \leq \alpha\} \in \mathscr{A}
+\] 
+Da $\mathscr{A} \subset \mathscr{B}$, folgt damit die $\mathscr{B}$-Messbarkeitsbedingung \[
+\{f \leq \alpha\} \in \mathscr{B}
+\]
+
+\item Es gilt (Begründung notwendig!): \[
+\{\mathds{1}_M \leq \alpha\}=\begin{cases} \Omega\quad \text{   falls } 1\leq \alpha\\
+M^{\mathrm{C}} \text{ falls } 0 \leq \alpha < 1\\
+\emptyset \quad\text{ falls } \alpha < 0 \end{cases}
+\]
+Wegen $M^{\mathrm{C}} \in \mathscr{A} \iff M \in \mathscr{A}$ liegen alle Urbilder genau dann in $\mathscr{A}$, wenn $M \in \mathscr{A}$ gilt.
+
+\item  Lösung ohne den Hinweis relativ lang, daher in jedem Fall Äquivalenzbedingungen ausnutzen. Nach diesen liegen die Mengen $\{ f < r\}$ und $\{ r < g\}$ und damit auch die Mengen $\{ f < r\} \cap \{ r < g\}$ in $\mathscr{A}$. Aus den Eigenschaften einer $\sigma$-Algebra folgt dann, dass auch folgende Menge in  $\mathscr{A}$ liegt: \[
+\bigcup\limits_{r \in \mathbb{Q}} \{ f < r\} \cap \{ r < g\} = \{ f < g\}
+\]
+Mit $\{ f < g\}$ liegt auch das Komplement $\{ f \geq g\}$ in $\mathscr{A}$. Analog lässt sich zeigen, dass $\{ f \leq g\}$ in $\mathscr{A}$ liegt. Da $\{ f = g\} = \{f \leq g\} \cap \{ f \geq g\}$ liegt damit auch $\{ f = g\}$ in $\mathscr{A}$.
+
+\end{enumerate}
+
+\item Aufgabe 
+
+\begin{enumerate}[label=(\roman*)]
+
+\item Für $\beta = 0$ ist die Behauptung trivial!? Es gelte daher $\beta \neq 0$. Sei $r$ eine beliebige reelle Zahl, so gilt: \[
+\{\alpha + \beta \cdot g \leq r\}=\begin{cases} \{g < \frac{r - \alpha}{\beta}\}\quad \text{ falls } \beta < 0\\
+\{g > \frac{r - \alpha}{\beta}\} \text{ falls } \beta < 0\\
+\{\alpha < r\} \quad\text{ falls } \beta = 0 \end{cases}
+\]
+Unabhängig der Fallunterscheidung liegt ein Element von $\mathscr{A}$ vor. In den beiden ersten Fällen aufgrund der Messbarkeit von $g$, im dritten Fall, da $\{\alpha < r\} = \emptyset $ oder $\{\alpha < r\} = \Omega $ gilt.
+
+\item Setzt man im vorangehenden Beweis $\beta = -1$, so folgt, dass die Funktion $\alpha - g$ für alle $\alpha \in \mathbb{R}$ messbar ist. Aus der Messbarkeit der Funktion $f$ folgt daher nach Aufgabe 2 (iii), dass für alle $\alpha \in \mathbb{R}$ die Menge \[
+\{f \leq \alpha - g\} = \{f + g \leq \alpha\}
+\]
+in der $\sigma$-Algebra $\mathscr{A}$ liegt. Daraus folgt die Behauptung.
+
+\item Es gilt: \[
+\{f^2 \geq \alpha\}=\begin{cases} \Omega \quad \text{ falls } \alpha \leq 0\\
+\{f \geq \sqrt{\alpha}\} \cup \{f \leq - \sqrt{\alpha}\} \text{ falls } \alpha > 0 \end{cases}
+\]
+Da die Mengen $\{f \geq \sqrt{\alpha}\}$ und $\{f \leq - \sqrt{\alpha}\}$ wegen der Messbarkeit von $f$ in $\mathscr{A}$ liegen, liegt damit auch $\{f^2 \geq \alpha\}$ in $\mathscr{A}$.
+
+\item Da nach Teil (i) und (ii)  $\frac{1}{2}(f + g)$ und $\frac{1}{2}(f - g)$ messbar sind, folgt die Behauptung mit Teil (iii) aus der Darstellung \[
+f \cdot g = \frac{1}{4}(f + g)^2 - \frac{1}{4}(f - g)^2
+\]
+
+\end{enumerate}
+
+\item Aufgabe 
+
+\begin{enumerate}[label=(\roman*)]
+
+\item Offensichtlich, quasi bereits gelöst.
+
+\item Für $z \leq 0$ gilt $\{ Y \leq z\} = \emptyset$ und daher $F_Y (z) = 0$. \\ Für $z \geq 1$ gilt $\{ Y \leq z\} = \Omega$ und daher $F_Y (z) = 1$. \\ Für $0 < z <1$ gilt 
+\begin{align*} 
+F_Y (z) &= P(\{ Y \leq z\})  \\ 
+&=  P(\{ 1 - \exp (-c \cdot X) \leq z\}) \\
+&= P(\{ X \leq -\frac{\ln (1 - z)}{c}\}) \\
+&= 1- \exp (\lambda \cdot \frac{\ln (1 - z)}{c}) \\
+&= 1 - (1 - z)^{\frac{\lambda}{c}}
+\end{align*}
+Im Spezialfall $c = \lambda$ ergibt sich also eine Gleichverteilung.
+
+\item Partielle Integration liefert ohne Umwege $\E (X) =  \frac{1}{\lambda}$. \\ Analog liefert zweimalige partielle Integration $\Var (X) = \frac{1}{\lambda^2}$. Werte exisitieren offensichtlich nur für $\lambda > 0$.
+
+\item Gedächtnislosigkeit wird durch die Eigenschaft beschrieben.
+\begin{align*} 
+P(X \leq s+ t \mid X > s) &= \frac{P(\{ X \leq s + t\} \cap \{ X > s\} )}{P(\{ X >s\})}  \\ 
+&=  \frac{P(\{s < X \leq s + t\})}{1 - F_X (s)} \\
+&= \frac{F_X (s + t) - F_X (s)}{1 - F_X (s)} \\
+&= 1 - \exp (- \lambda \cdot t) \\
+&= F_X (t) = P(X \leq t)
+\end{align*}
+
+\end{enumerate}
+
+
+\item Aufgabe  \\
+Analog zu besprochener Theorie. Notwendige Bestandteile, die erläutert werden sollten: Zustandsraum, Ereignis vs. Ergebnis, $\sigma$-Algebra, Wahrscheinlichkeitsmaß, Definitions- und Wertebereich der Zufallsvariable, Messbarkeit.
+
+
+\end{enumerate}
+\end{document}

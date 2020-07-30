@@ -1,0 +1,147 @@
+\documentclass[12pt]{article} 
+
+\usepackage[utf8]{inputenc} 
+
+
+\usepackage[margin=3.3cm]{geometry} 
+\geometry{a4paper} 
+\usepackage[parfill]{parskip} 
+
+
+\usepackage{graphicx} 
+\usepackage{booktabs}
+\usepackage{array} 
+\usepackage{paralist} 
+\usepackage{verbatim} 
+\usepackage{mathtools}
+\usepackage[hidelinks]{hyperref}
+\usepackage{german}
+
+\urlstyle{same}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{setspace}
+\usepackage{eurosym}
+\usepackage{listings} 
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tablefootnote}
+
+\usepackage{mathtools} 
+\usepackage{mathrsfs} 
+
+\usepackage{fancyhdr} 
+\pagestyle{fancy} 
+\renewcommand{\headrulewidth}{0pt} 
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape}
+
+
+\usepackage[nottoc,notlof,notlot]{tocbibind} 
+\usepackage[titles]{tocloft} 
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} 
+\usepackage{setspace}
+\onehalfspacing
+
+\newtheorem{definition}{Definition}
+\begin{document}
+
+\pagenumbering{arabic}
+
+\section{Zustandsräume}
+
+$\Omega$ bezeichne im Folgenden eine Menge von möglichen Umweltzuständen $\omega$, deren Eintritt
+nicht vorhersehbar ist. Ein Umweltzustand $\omega \in \Omega$
+ ist dabei zu verstehen als Zusammenfassung
+aller Zustände und Konstellationen, welche die betrachteten Größen beeinflussen. Die
+Menge $\Omega$ wird als Zustands- oder Ergebnisraum, Teilmengen von $\Omega$ 
+ werden als Ereignisse bezeichnet. Ist der Zustand $\omega$ eingetreten, so sagen wir, \glqq Das Ereignis A ist eingetreten\grqq ,
+wenn $\omega \in A$ gilt. Im Fall $\omega \notin A$ sagt man, \glqq Das Ereignis A ist nicht eingetreten\grqq . Ein Ereignis
+wird als bekannt bezeichnet, wenn es eingetreten oder nicht eingetreten ist.
+
+\section{$\sigma$-Algebren}
+Mit dem Eintreten eines Zustandes $\omega$ sind nicht nur einzelne Ereignisse sondern auch zusammengesetzte
+Ereignisse bekannt \footnote{Diese informationstheoretische Interpretation von $\sigma$-Algebren geht auf den deutschen Mathematiker Klaus Schindler zurück.}. Sind nämlich $A$ und $B$ bekannte Ereignisse, so gilt dies aus mengentheoretischen Gründen z.B. auch für $A^{\mathrm{C}}$, $A \cap B$ oder $A \cup B$. Ein System $\mathscr{A}$ von
+beobachtbaren Ereignissen, das diese mehr oder minder naheliegenden mengentheoretischen
+Eigenschaften besitzt, wird als $\sigma$-Algebra bezeichnet. Genauer definiert man: \\
+
+Ein System $\mathscr{A}$ von Teilmengen der Menge $\Omega$ heißt $\sigma$-Algebra in $\Omega$, wenn es folgende
+Eigenschaften erfüllt:
+\begin{itemize}
+\item{$\Omega \in \mathscr{A}$}
+\item{$A \in \mathscr{A} \implies A^{\mathrm{C}} \in \mathscr{A}$}
+\item{$A_1, A_2, A_3, ... \in \mathscr{A} \implies \bigcup\limits_{l \in \mathbb{N}} A_l \in \mathscr{A}$}
+\end{itemize}
+Ein Paar $(\Omega, \mathscr{A})$, bestehend aus einem Zustandsraum $\Omega$
+ und einer $\sigma$-Algebra $A \subset \mathscr{P}(\Omega)$ wird
+als Messraum bezeichnet.\footnote{Man beachte, dass diese \glqq Vereinigungsstabilität\grqq (die letzte Eigenschaft) nur für abzählbare Vereinigungen gefordert wird. Überabzählbare Vereinigungen von Elementen der $\sigma$-Algebra $\mathscr{A}$ liegen i.A. nicht mehr in $\mathscr{A}$! Entsprechende Vorsicht ist ander Schnittstelle zwischen diskreten und stetigen Zufallsvariablen geboten.}
+
+\section{Wahrscheinlichkeitsräume}
+Zwar kann man i.A. nicht voraussagen, welche Ereignisse zukünftig eintreten, jedoch ist
+es oft möglich, eine Einschätzung abzugeben, mit welchen Ereignissen in einer gegebenen
+$\sigma$-Algebra eher zu rechnen ist und welche weniger plausibel sind. Dies wird präzisiert durch
+die Angabe von Werten zwischen $0$ und $1$, die man als Wahrscheinlichkeit bezeichnet. Ist
+$A \subset \Omega$ ein Ereignis, so bezeichnet $P(A)$ die Wahrscheinlichkeit dafür, dass das Ereignis $A$ eintritt. Man nennt $P$ ein
+Wahrscheinlichkeitsmaß. Aufgrund mengentheoretischer\footnote{Man könnte auch von \textit{maß}theoretischen Überlegungen sprechen.} Überlegungen ist es sinnvoll, von
+diesem Maß gewisse Eigenschaften zu fordern. Sind z.B. $A$ und $B$ disjunkte Ereignisse, sollte
+$P(A \cup B) = P(A)+P(B)$ gelten. Außerdem sollte die Wahrscheinlichkeit für alle Ereignisse
+aus der gegebenen $\sigma$-Algebra berechnet werden können. Dies führt zu folgender Definition.\\
+
+Sei $A$ eine $\sigma$-Algebra im Zustandsraum $\Omega$. Eine Funktion $P : \mathscr{A} \to [0, 1]$ heißt Wahrscheinlichkeitsmaß
+auf $\mathscr{A}$, wenn gilt
+\begin{itemize}
+\item{$P(\Omega) = 1$}
+\item{$P$ ist $\sigma$-additiv, d.h. für jede Folge paarweise disjunkter Mengen $A_1, A_2, . . .$ gilt: \[
+P\left( \dot{\bigcup\limits_{i \in \mathbb{N}}}A_i \right) = \sum_{i \in \mathbb{N}}P(A_i)
+\]}
+\end{itemize}
+Das Tripel $(\Omega, \mathscr{A}, P)$ wird als Wahrscheinlichkeitsraum bezeichnet.
+
+\section{Zufallsvariablen und Messbarkeit}
+So elegant und allgemein das Konzept des Wahrscheinlichkeitsraumes gehalten ist\footnote{Dieses grundlegende axiomatische Modell geht auf den russischen Mathematiker Kolmogoroff zurück.}, so wenig
+praktikabel erscheint es, da eine vollständige Bestimmung des gesamten Zustandsraumes $\Omega$
+auf Grund seiner Komplexität i.A. unmöglich oder viel zu aufwändig wäre. Man wird sich
+daher nur auf die Daten bzw. Ereignisse konzentrieren, an denen man wirklich interessiert ist.
+Diese Größen, wie z.B. Aktienkurse oder Temperaturen, deren Werte direkt vom jeweiligen
+zufälligen zukünftigen Umweltzustand abhängen, bezeichnet man als Zufallsgrößen.
+
+Eine Abbildung auf dem Zustandsraum $\Omega$ \[
+Z : \Omega \to \mathbb{R}^d \quad \text{  mit  }\quad \omega \mapsto Z(\omega)
+\]
+bezeichnet man als Zufallsgröße. Im Fall $d=1$ spricht man von einer Zufallsvariable. Im Fall
+$d>1$ ist $Z$ ein Vektor von Zufallsvariablen, d.h. es gilt $Z = (Z_1, . . . , Z_d)$ und man spricht
+von einem $d$-dimensionalen Zufallsvektor.\footnote{Man beachte, dass sich in dieser Definition auf reellwertige Zufallsgrößen beschränkt wurde, jedoch lässt sich das Konzept auf triviale Weise verallgemeinern.}
+\\
+Statt alle möglichen Ereignisse zu betrachten, wird man seine Aufmerksamkeit auf die
+Ereignisse konzentrieren, die mit einer gegebenen Zufallsgröße $Z$ zu tun haben. Da auf
+Grund des vorher schon erwähnten nicht vorhersehbaren stochastischen Charakters unserer
+Umwelt nur eine Bandbreite von in Frage kommenden zukünftigen Umweltzuständen angegeben
+werden kann (Ereignisse), ist es bei einer gegebenen ZV $Z$ auch sinnvoller, nach dem
+Eintreten eines Intervalls von Werten von $Z$, statt nach dem Eintreten einzelner Werte zu
+fragen. Von Interesse sind also vor allem die Ereignisse in $\Omega$, für die $Z$ Werte innerhalb eines
+vorgegebenen Intervalls annimmt, also die Urbilder \[
+Z^{-1}(\left] -\infty, x \right] ) = \{ \omega \in \Omega \mid -\infty < Z(\omega) \leq x \} =: \{ Z \leq x \}
+\]
+\glqq Beherrschbar\grqq  ist eine Zufallsgröße $Z$ nur, wenn diese Ereignisse beobachtbar bzw. \glqq messbar\grqq
+sind, d.h. wenn man die Eintrittswahrscheinlichkeit dieser Ereignisse berechnen kann.
+Mathematisch bedeutet dies, dass sie im Definitionsbereich des Wahrscheinlichkeitsmaßes
+liegen, also Elemente der $\sigma$-Algebra sein müssen. Diese Messbarkeit ist eine Minimalforderung,
+die wir in Zukunft von allen Zufallsgrößen verlangen werden.
+
+Eine Zufallsgröße $Z : \Omega \to \mathbb{R}^d $ heißt messbar bzgl. der $\sigma$-Algebra $\mathscr{A}$, wenn gilt:
+\[
+\forall x \in \mathbb{R}^d : \{Z \leq x\} \in \mathscr{A}
+\]
+Hierbei ist $\{Z \leq x\} \in \mathscr{A}$ eine Kurznotation für die Menge der Umweltzustände $\omega \in \Omega$, die bei der
+Funktion $Z = (Z_1, . . . , Z_d)$ zu Werten unterhalb von $x = (x_1, . . . , x_d)$ führen, d.h.:
+\[
+\{Z \leq x\} = \{\omega \in \Omega \mid Z(\omega) \leq x\} = \{\omega \in \Omega \mid Z_1(\omega)\leq x_1, ..., Z_d(\omega)\leq x_d\}
+\]
+
+\end{document}

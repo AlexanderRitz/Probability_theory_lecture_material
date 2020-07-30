@@ -1,0 +1,99 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{mathtools} 
+\usepackage{mathrsfs} 
+\usepackage{dsfont}
+\usepackage{enumitem}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
+\newcommand{\E}{\mbox{I\negthinspace E}}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+
+\title{Probability theory exercises}
+\author{Alexander Ritz}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+
+\item Exercise 
+\begin{enumerate}[label=(\roman*)]
+
+\item Construct the smallest and largest possible $\sigma$-algebra in a given set $\Omega$.
+
+\item Construct all possible $\sigma$-algebras in a set of magnitude $4$: $\Omega_4:=\{a, b, c, d\}$.
+
+\item\textbf{Sketch} what a $\sigma$-algebra in the set $\Omega_5:= \left[0, 5 \right] (\Omega_5 \in \mathbb{R})$ would conceptually look like.
+
+\item Compare the $\sigma$-algebras constructed or sketched in (ii) und (iii). What do you notice?
+
+\end{enumerate}
+
+
+\item Exercise \\
+Let $\mathscr{A}$ und $\mathscr{B}$ be two $\sigma$-algebras in $\Omega$ with $\mathscr{A} \in \mathscr{B}$.
+\begin{enumerate}[label=(\roman*)]
+
+\item Show that $\mathscr{A}$-measurability of $f:\Omega \to \mathbb{R}$ implies $\mathscr{B}$-measurability.
+
+\item Show that an indicator function $\mathds{1}_M:\Omega \to \mathbb{R}$ is $\mathscr{A}$-measurable exactly when $M \in \mathscr{A}$.
+
+\item Let $f, g: \Omega\to \mathbb{R}$ be $\mathscr{A}$-measurable functions. Show that the sets \[\{f < g\}, \{f \leq g\}, \{f = g\}\text{ and }\{ f \neq g\}\] are elements of $\mathscr{A}$.\footnote{With the usual notation utilised in the field of statisitcs: $\{f < g\} = \{\omega \in \Omega \mid f(\omega) < g(\omega)\}$} \\ \textit{Hint}: The $\mathscr{A}$-measurability of a function $f$ is equivalent to:\begin{align*}
+\forall \alpha \in \mathbb{R} : \{ f \leq \alpha\} \in \mathscr{A} &\iff \forall \alpha \in \mathbb{R} : \{ f \geq \alpha\} \in \mathscr{A}\\ \iff \forall \alpha \in \mathbb{R} : \{ f > \alpha\} \in \mathscr{A} &\iff \forall \alpha \in \mathbb{R} : \{ f < \alpha\} \in \mathscr{A}
+\end{align*}
+
+
+\end{enumerate}
+
+\item Exercise \\
+Given $f, g: \Omega\to \mathbb{R}$ $\mathscr{A}$-measurable functions.  Show:
+\begin{enumerate}[label=(\roman*)]
+
+\item $\alpha + \beta \cdot g$ is $\mathscr{A}$-measurable ($\alpha, \beta \in \mathbb{R}$).
+
+\item $f + g$ is $\mathscr{A}$-measurable.
+
+\item $f ^2$ is $\mathscr{A}$-measurable.
+
+\item $f \cdot g$ is $\mathscr{A}$-measurable.
+
+\end{enumerate}
+
+\item Exercise \\
+Let $X: \Omega \to \left[ 0, + \infty \right]$ be a random variable with \textit{Exponential} distribution, implying:
+\[
+F_{X} (z) = P(\{ X \leq z\} ) = \int_0^z \lambda \cdot \exp(- \lambda \cdot t) \diff t = 1 - \exp (- \lambda \cdot z)
+\]
+\begin{enumerate}[label=(\roman*)]
+
+\item Show that $X$ posesses a density.
+
+\item Derive the distribution function of the random variable $Y:= 1 - \exp (-c \cdot X)$. What special case is constructed by setting $c$ equal to $\lambda$?
+
+\item Calculate, insofar either exists, expected value and variance of $X$.
+
+\item Show that, for all $s, t \geq 0$
+\[
+P(X \leq s + t \mid X > s) = P(X \leq t)
+\]
+Interpret the statement.
+
+\end{enumerate}
+
+
+\item Exercise \\
+Describe the \glqq elements\grqq(or rather components) of a random variable and its associated probability space. Evaluate and explicitly describe the necessity of the often assumed measurability property.\\ \textit{Hint}: The concept of \glqq events\grqq und \glqq results\grqq should be considered as well.
+
+
+\end{enumerate}
+\end{document}
