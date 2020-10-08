@@ -185,7 +185,7 @@ For a deterministic function $F: \mathbb{D} \to \mathbb{R}$ with a finite domain
 \]
 In the case of an infinite domain $\mathbb{D} = \left[ a, b \right]$ $\bar{f}$ assumes the form of an integral accordingly. The weighting \glqq factor\grqq \ now being $\frac{\diff x}{b - a}$:
 \[
-\bar{f} := \frac{\diff x}{b - a} \int_a^b f(x) \diff x
+\bar{f} := \frac{1}{b - a} \int_a^b f(x) \diff x
 \]
 Appropriating this concept in the stochastic case by replacing the relative frequency with the probability of a particular value being assumed, $P(\{z < X \leq z + \diff z\}) = F_X(z + \diff z) - F_X (z) = \diff F_X(z)$, gives
 \[
@@ -264,7 +264,7 @@ It is important to note that the set $\{ a\}$, meaning the set containg nothing 
 
 A non-empty set is called \textit{finite}, if it contains only finitely many elements; $\mid M\mid$ denoting the number of elements.
 
-In order to avoid running afoul of \textit{Russel's paradox}\footnote{In German called \glqq Russelsche Antimonie\grqq.}, one usually defines a relative universal set $G$ which contains all elements of the interest. A set  $A$ is then called \textit{subset} of $B$, if:
+In order to avoid running afoul of \textit{Russel's paradox}\footnote{In German called \glqq Russelsche Antimonie\grqq.}, one usually defines a relative universal set $G$ which contains all elements of interest. A set  $A$ is then called \textit{subset} of $B$, if:
 \[
 \forall x \in G : (x \in A \implies x \in B),
 \]
