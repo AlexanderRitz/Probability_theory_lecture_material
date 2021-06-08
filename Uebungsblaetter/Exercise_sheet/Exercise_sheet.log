@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2018.1.23)  18 OCT 2019 00:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2018.1.23)  10 MAR 2021 11:57
 entering extended mode
 **./Exercise_sheet.tex
 (Exercise_sheet.tex
@@ -661,8 +661,8 @@ File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
 ] (Exercise_sheet.aux) ) 
 Here is how much of TeX's memory you used:
  4545 strings out of 493312
- 61004 string characters out of 3146674
- 144221 words of memory out of 3000000
+ 61220 string characters out of 3146674
+ 143221 words of memory out of 3000000
  7985 multiletter control sequences out of 15000+200000
  14212 words of font info for 62 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -678,7 +678,7 @@ Tex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><H:/MikTex/fonts/type1/public/ams
 fonts/cm/cmti12.pfb><H:/MikTex/fonts/type1/public/doublestroke/dsrom12.pfb><H:/
 MikTex/fonts/type1/public/amsfonts/symbols/msbm10.pfb><H:/MikTex/fonts/type1/pu
 blic/rsfs/rsfs10.pfb>
-Output written on Exercise_sheet.pdf (2 pages, 138502 bytes).
+Output written on Exercise_sheet.pdf (2 pages, 138806 bytes).
 PDF statistics:
  69 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

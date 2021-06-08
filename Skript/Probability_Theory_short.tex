@@ -66,13 +66,21 @@
 
 \pagenumbering{arabic}
 
-\section{Preface}
-The following introduction is meant to be a very basic overview of the most relevant theoretical concepts utilised in the field of statistics. For a more useful, thorough introduction and the more technical formalisations, the book \textbf{Measure Theory: Second Edition} by Donald L. Cohn is wholeheartedly recommended. More advanced texts can be recommended to enthusiastic students on request, since recommendations on an individual basis are likely to result in higher long-term satisfaction... or rather fewer regrets about money ill-spent.\\
+\section*{Preface}
+The following introduction is meant to be a very basic overview of the most relevant theoretical concepts utilised in the field of statistics. For a more useful, thorough introduction and the more technical formalisations, the book \textbf{Measure Theory: Second Edition} by Donald L. Cohn is wholeheartedly recommended. More advanced texts can be recommended to enthusiastic students on request, since recommendations on an individual basis are likely to result in higher long-term satisfaction... or fewer regrets about money ill-spent.\\
 This text is heavily inspired by the very insightful work of Dr. Klaus Schindler, especially his mathematically inspiring lecture \glqq Mathematics D: Pricing of Financial Derivatives\grqq .
 \newline
 Suggestions, corrections and questions regarding this script can be addressed at alexander.ritz@stud.uni-goettingen.de
 \newpage
+This script will summarise the formalisation of the most essential ideas surrounding the notion of random experiments. We will start by defining sample spaces and probability spaces in order to find our way to random variables and their distributions. Having, hopefully, understood the concept of distributions, we will define moments of random variables, opening a convenient gateway to further studies in mathematical statistics.
+\newline
+For readers less familiar with formal notation or weaker mathematical foundations, the appendix contains an introduction to both formal logic and set theory. It is crucial for prospective statisticians to attain mathematical literacy in the sense that one should be capable of writing and reading mathematical statements without extensive cognitive strain.
 
+The appendix also contains a short overview of necessary integration theory and the Radon-Nikodym theorem for students yearning for fundamental mathematical revelations, which are outside the scope of this minimalist treatment.
+\newpage
+
+\tableofcontents
+\newpage
 \section{Sample spaces}
 
 Let $\Omega$ denote the set of all potential outcomes or results $\omega$ of a random experiment. The
@@ -81,17 +89,17 @@ set $\Omega$ is usually called sample space or possibility space, subsets of $\O
 if $\omega \in A$ holds. In case $\omega \notin A$ we say, \glqq The event A was not realised\grqq . An outcome is called known, if it was either realised or not realised.
 
 \section{$\sigma$-algebras}
-The realisation of an outcome $\omega$ does not just contain information about the occurence of singular outcomes, but more complex composite outcomes \footnote{This information-theoretic interpretation of $\sigma$-algebras was established by the German mathematician Klaus Schindler.}. Are $A$ and $B$ known outcomes, then set-theoretic reasons imply the knowledge of further outcomes. For example $A^{\mathrm{C}}$, $A \cap B$ or $A \cup B$. A system $\mathscr{A}$ of
+The realisation of an outcome $\omega$ does not just contain information about the occurence of singular outcomes, but more complex composite outcomes \footnote{This information-theoretic interpretation of $\sigma$-algebras was established by the German mathematician Klaus Schindler.}. Are $A$ and $B$ known outcomes, then set-theoretic reasons imply the knowledge of further outcomes. For example $A^\complement$, $A \cap B$ or $A \cup B$. A system $\mathscr{A}$ of
 observable results which adheres to these more or less intuitive set-theoretic properties is called $\sigma$-algebra. More formally: \\
 
 A system $\mathscr{A}$ of subsets of $\Omega$ is called $\sigma$-Algebra in $\Omega$, if it has the following properties:
 \begin{itemize}
 \item{$\Omega \in \mathscr{A}$}
-\item{$A \in \mathscr{A} \implies A^{\mathrm{C}} \in \mathscr{A}$}
+\item{$A \in \mathscr{A} \implies A^\complement \in \mathscr{A}$}
 \item{$A_1, A_2, A_3, ... \in \mathscr{A} \implies \bigcup\limits_{l \in \mathbb{N}} A_l \in \mathscr{A}$}
 \end{itemize}
 A tuple $(\Omega, \mathscr{A})$, consisting of a sample space $\Omega$
- and a $\sigma$-algebra $A \subset \mathcal{P}(\Omega)$ is called measure space.\footnote{Please note that this \glqq stability over unions\grqq (the last property) only holds in case of a countable number of unions! Uncountable unions of elements of $\sigma$-algebra $\mathscr{A}$ do not generally lie in $\mathscr{A}$ as well! Appropriate caution is therefore recommended when working at the interface of discrete and continuous random variables.}
+ and a $\sigma$-algebra $A \subset \mathcal{P}(\Omega)$ is called measurable space.\footnote{Please note that this \glqq stability over unions\grqq (the last property) only holds in case of a countable number of unions! Uncountable unions of elements of $\sigma$-algebra $\mathscr{A}$ do not generally lie in $\mathscr{A}$ as well! Appropriate caution is therefore recommended when working at the interface of discrete and continuous random variables.}
 
 \section{Probability spaces}
 Although it is usually impossible to tell which outcomes are going to be realised, it is very often possible to give an opinion of the likelihood of an outcome in a specific
@@ -99,7 +107,7 @@ $\sigma$-algebra, given its relative plausability. This can be formalised by ass
 $A \subset \Omega$ is an event, then $P(A)$ denotes the probability of $A$ being realised. The function $P$ is called probability measure. Based on set-theoretic\footnote{One could more correctly speak of \textit{measure}-theoretic.} considerations it is sensible to demand certain properties from this measure. Are $A$ und $B$ disjoint events, then
 $P(A \cup B) = P(A)+P(B)$ should hold. Additionally, the probabilities of all events in the given $\sigma$-algebra should be calculable. These considerations lead to the following definition.\\
 
-Let $\mathscr{A}$ be a $\sigma$-algebra in the sample space $\Omega$. A function $P : \mathscr{A} \to [0, 1]$ is called probability measure
+Let $\mathscr{A}$ be a $\sigma$-algebra on the sample space $\Omega$. A function $P : \mathscr{A} \to [0, 1]$ is called probability measure
 on $\mathscr{A}$, if
 \begin{itemize}
 \item{$P(\Omega) = 1$}
@@ -117,13 +125,13 @@ These quantities, for example stock prices or temperatures, with values dependin
 A function on the sample space $\Omega$ \[
 X : \Omega \to \mathbb{R}^d \quad \text{  with  }\quad \omega \mapsto X(\omega)
 \]
-is called random quantity. In case of $d=1$ $X$ is called a random variable. In case of
+is called random quantity. In case of $d=1$, $X$ is called a random variable. In case of
 $d>1$ $X$ is a vector of random variables, that is $X = (X_1, . . . , X_d)$. In that case, $X$ is called $d$-dimensional random vector.\footnote{Please note that this definition was restricted to the case of real valued random quantities, for reasons of ease of understanding. The concept is trivially generalised though.}
 \\
 Instead of modelling every single potential event one is going to restrict oneself to those which are related to a given random quantity $X$. Because of the unpredictable stochastic nature of our environment, it is sensible to examine the realisation of intervals of potential values of $X$ instead of singular points. Of predominant  interest are events in $\Omega$, for which $X$ assumes values within a specific interval, the preimage or inverse image \[
 X^{-1}(\left] -\infty, z \right] ) = \{ \omega \in \Omega \mid -\infty < X(\omega) \leq z \} =: \{ X \leq z \}
 \]
-One can only call a random variable $X$ \glqq manageable\grqq if these events are observable or \glqq measurable\grqq, i.e. if their probability is calculable.
+One can only call a random variable $X$ \glqq manageable\grqq, if these events are observable or \glqq measurable\grqq, i.e. if their probability is calculable.
 Formally, this means that they have to be elements of the domain of definition of the probability measure.
 This would make them elements of the related $\sigma$-algebra. Measurability is often seen as a necessary property of random quantities,
 and we will assume measurability in future applications involving random variables, unless otherwise stated.
@@ -132,13 +140,13 @@ A random quantity $X : \Omega \to \mathbb{R}^d $ is called measurable with respe
 \[
 \forall z \in \mathbb{R}^d : \{X \leq z\} \in \mathscr{A}
 \]
-with $\{X \leq z\} \in \mathscr{A}$ being shorthand for the set of outcomes $\omega \in \Omega$, for which the function $X = (X_1, . . . , X_d)$ results in values below $z = (z_1, . . . , z_d)$, i.e.:
+with $\{X \leq z\}$ being shorthand for the set of outcomes $\omega \in \Omega$, for which the function $X = (X_1, . . . , X_d)$ results in values below $z = (z_1, . . . , z_d)$, i.e.:
 \[
 \{X \leq z\} = \{\omega \in \Omega \mid X(\omega) \leq z\} = \{\omega \in \Omega \mid X_1(\omega)\leq z_1, ..., X_d(\omega)\leq z_d\}
 \]
 
 \section{Distribution of Random Variables}
-Let $X: \Omega \to \mathbb{R}^d$ be a measurable random variable on the measure space $(\Omega, \mathscr{A})$. The probabilities of \textit{all} events belonging to $X$ as a whole are called \textit{probability distribution} or \textit{cumulative distribution} of the random variable $X$. The entire distribution is determined by the function:
+Let $X: \Omega \to \mathbb{R}^d$ be a measurable random variable on the measurable space $(\Omega, \mathscr{A})$. The probabilities of \textit{all} events belonging to $X$ as a whole are called \textit{probability distribution} or \textit{cumulative distribution} of the random variable $X$. The entire distribution is determined by the function:
 \begin{align}
 F_X: \mathbb{R}^d &\to \left[ 0, 1\right] \\
 z &\mapsto F_X(z):= P(\{X \leq z\}) = P(\{X_1 \leq z_1, \dots , X_d \leq z_d\}),
@@ -148,7 +156,7 @@ Distribution functions offer an especially easy method for calculating probabili
 \[
 P(\{ a < X \leq b\}) = F_X(b) - F_X(a) = \int_a^b \diff F_X(z)
 \]
-Given that $F_X$ is continuous. \\
+, given that $F_X$ is continuous. \\
 In case $F_X$ is differentiable, the probabilities can be given as:
 \[
 \int_a^b \diff F_X(z) = \int_a^b F^{\prime}_X(z)\diff z
@@ -205,6 +213,95 @@ The variance, being defined as a quadratic quantity, differs in its unit of meas
 s(X) := \sqrt{\Var (X)}
 \]
 
+\section{Convergence of Random Variables}
+
+In order to work with asymptotic properties of random variables, an essential method in inferential statistics, we will now list ways in which sequences of random variables may converge. This chapter closely follows the treatment found in \textbf{Applied Statistical inference: Likelihood and Bayes} by Leonhard Held and Daniel Sabanés Bové. 
+
+Recall that convergence towards a limit $L$ for a deterministic sequence $S_n$, with $n \in \mathbb{N}$, can be expressed by
+\[
+\forall \epsilon > 0 \quad \exists N: \quad \forall n \geq N : \quad|S_n - L| < \epsilon
+\]
+Put into words, we should be able to find an element of the sequence $S_n$ with a distance of less than $\epsilon$ from $L$, for which all following elements of $S_n$ are at least as close to $L$, no matter how small we choose $\epsilon$.
+
+\subsection{Convergence in Probability}
+If one wants to address convergence in a stochastic context, a very similar view is provided by \textit{convergence in probability}. Translating the deterministic context gives rise to the following definition: 
+
+A sequence of random variables $X_1, X_2, ...$, denoted by $X_n$, is said to converge in probability towards $X$, written as $X_n \overset{P}\to X$ or $\text{plim}_{n \to \infty} X_n  = X$, if
+\[
+\forall \epsilon > 0 :\quad P(|X_n - X| > \epsilon) \to 0 \quad \text{as} \quad n \to \infty
+\]
+Putting this into words once again, the distance between $X_n$ and $X$ should be \textit{almost surely}\footnote{i.e. with probability $P=1$} contained in an arbitrary $\epsilon$-environment as $n$ tends towards infinity.
+
+\subsection{Convergence in Distribution}
+Similar to the aforementioned mode of convergence, an intuitive view of stochastic convergence can be tied to the distributions of the sequence of random variables and its prospective limit.
+
+$X_n$ is said to \textit{converge in distribution} towards $X$, written as $X_n \overset{D}\to X$, if 
+\[
+\forall x \in \mathbb{R} : \quad P(X_n \leq x) \to P(X \leq x) \quad \text{as} \quad n \to \infty
+\]
+, given that $P(X \leq x)$ is continuous at $x$.
+
+\subsection{Convergence in rth Mean}
+Lastly, we may define $X_n$ as converging \textit{in rth mean} (for $r \geq 1$), written as $X_n \overset{r}\to X$, if 
+\[
+\forall n \in \mathbb{N}: \quad \E{(|X_n|^r)} < \infty 
+\] and 
+\[
+\E{(|X_n - X|^r)} \to 0 \quad \text{as} \quad n \to \infty
+\]
+For applications the choice of $r= 2$ is most relevant, as this defines \textit{convergence in mean square}.
+
+Now that we have a multitude of convergence concepts on our hands, we can observe some relationships between them:
+
+\begin{align*}
+X_n \overset{r}\to X &\implies X_n \overset{P}\to X \quad \text{for} \quad r \geq 1 \\
+X_n \overset{P}\to X &\implies X_n \overset{D}\to X \\
+X_n \overset{D}\to c &\implies X_n \overset{P}\to c
+\end{align*}
+with $c$ being a ral valued constant.
+
+These impications show that convergence in rth mean is the strongest form of convergence among those we defined. The weakest mode of convergence being convergence in distribution. Although convergence in distribution does entail convergence in probability for the case of convergence towards a constant.
+
+\subsection{Continuous Mapping and Slutsky's Theorem}
+Of utmost importance in the context of convergence of random variables are the \textit{continuous mapping theorem} and \textit{Slutsky's theorem}. Both are indispensable tools when computing limits, with the continuous mapping theorem stating that any continuous function $g: \mathbb{R}\to \mathbb{R}$ preserves the limits when considering convergence in probability or distribution:
+\begin{align*}
+X_n \overset{P}\to X &\implies g(X_n)\overset{P}\to g(X) \\
+X_n \overset{D}\to X &\implies g(X_n)\overset{D}\to g(X)
+\end{align*}
+
+Slutsky's Theorem on the other hand assures us of the fact that a constant limit $Y_n \overset{P}\to a \in\mathbb{R}$ and $X_n \overset{D}\to X$ are preserved under addition and multiplication:
+\begin{align*}
+X_n  + Y_n &\overset{D}\to X + a \\
+Y_n \cdot X_n &\overset{D}\to a \cdot X
+\end{align*}
+Note that the limit of the sum and product are constructed under convergence in distribution.
+
+\subsection{Law of Large Numbers}
+Given a sequence of independent and identically distributed(i.i.d.) random variables $X_i$ with finite expectation $\mu$, it holds that
+\[
+\frac{1}{n} \sum_{i = 1}^n X_i \overset{P}\to \mu \quad \text{as} \quad n \to \infty
+\]
+
+\subsection{Central Limit Theorem}
+Given a sequence of i.i.d. random variables $X_i$ with mean $\mu <\infty$ and finite, but non-zero variance ($0 < {\sigma}^2 <\infty$), one may show that
+\[
+\frac{1}{\sqrt{n \sigma^2}}\left(\sum_{i = 1}^n X_i - n\mu\right) \overset{D}\to Z \quad \text{as} \quad n \to \infty
+\]
+, where $Z$ denotes a random variable, which is standard normally distributed, i.e. $Z \sim N(0, 1)$.
+
+Since this result provides a distribution that is assumed asymptotically, a more compact notation is
+\[
+\frac{1}{\sqrt{n \sigma^2}}\left(\sum_{i = 1}^n X_i - n\mu\right) \overset{a}\sim N(0, 1)
+\]
+with $\overset{a}\sim$ standing for \glqq is asymptotically distributed as\grqq .
+
+For the analogous situation involving a sequence of $p$-dimensional random vectors, which are likewise i.i.d. with mean $\boldsymbol{\mu}$ and finite, positive definite covariance matrix $\boldsymbol{\Sigma} = \Cov{(X_i)}$, we obtain the result
+\[
+\frac{1}{\sqrt{n}}\left(\sum_{i = 1}^n \boldsymbol{X}_i - n\boldsymbol{\mu}\right) \overset{a}\sim N_p(0, \boldsymbol{\Sigma})
+\]
+Which could be written equivalently as converging in distribution towards $Z \sim N_p(0, \boldsymbol{\Sigma})$ as $n \to \infty$.
+
+\newpage
 \appendix
 
 \section{Prerequisite Knowledge}
@@ -299,10 +396,21 @@ while the \textit{intersection} of sets $A_1, \dots , A_n$ is defined as
 \bigcap\limits_{i = 1}^{n} A_i := \{x \mid \forall i \in \{1, \dots , n\} : x \in A_i\}
 \]
 Two sets are called \textit{disjoint}, if their intersection is equal to the empty set.
-The \textit{set difference} between tow sets $A$ and $B$ is defined as 
+The \textit{set difference} between two sets $A$ and $B$ is defined as 
 \[
 A\setminus B := \{x \in A \mid x \notin B\}
 \]
+The set theoretic analogue of a negation of a statement, the complement of a set, is defined as
+\[
+A^{\complement} = \overline{A} := \{x \mid x \in G \land x \notin A\}
+\]
+When it comes to the evaluation of set theoretic statements, the transformation rules called \textit{De Morgan's laws} are especially helpful. While usually stated in terms of formal logic, we will state them exclusively in their set theoretic analogues here:
+\begin{align*}
+(A \cup B)^\complement &= \overline{A \cup B} = A^\complement \cap B^\complement \\
+(A \cap B)^\complement &= \overline{A \cap B} = A^\complement \cup B^\complement
+\end{align*}
+Note that the first equality is simply meant to demonstrate the differing notations we defined for complements.
+
 
 \subsection{Continuity of functions}
 Ignoring certain mathematical technicalities, a function $f : \mathbb{D} \to \mathbb{R}^M$ with $\mathbb{D} \subset \mathbb{R}^N$, $N, M \in \mathbb{N}$ is called continuous in $x_0$, if
@@ -310,7 +418,7 @@ Ignoring certain mathematical technicalities, a function $f : \mathbb{D} \to \ma
 x_0 \in \mathbb{D} \text{ and } \lim_{x \to x_0} f(x) = f(x_0) = f(\lim_{x \to x_0} x)
 \]
 $f$ is then called continuous on $\mathbb{D}$ if $f$ is continuous in all points of $\mathbb{D}$.
-
+\newpage
 \section{Integration theory and Radon-Nikodym theorem}
 Both of the following sections of the appendix are made available for the sake of completeness and out of mathematical fervor, it is not necessary for a sufficient understanding of the main text. The most immediately useful parts should be the summary of properties of Riemann-Stieltjes integrals. While the Radon-Nikodym theorem is of utmost relevance, it might leave a rather abstract impression on readers unfamiliar with measure theory.
 
@@ -333,9 +441,9 @@ If $f$ is continuous on $\left[ a, b\right]$ and $\alpha$ is differiantiable wit
 \[
 \E (X) = \int_{\mathbb{R}^d } z \diff F_X(z) = \int_{\mathbb{R}^d } z \cdot F_X^{\prime}(z)\diff z
 \]
-
+\newpage
 \subsection{Radon-Nikodym theorem}
-Let $\lambda$ and $\mu$ be two positive measures on the measure space $(\Omega , \mathscr{A})$ with
+Let $\lambda$ and $\mu$ be two positive measures on the measurable space $(\Omega , \mathscr{A})$ with
 \begin{itemize}
 \item $0 < \mu (\Omega ) < \infty$ and $0 < \lambda (\Omega ) < \infty$
 \item $\lambda$ being absolutely continuous\footnote{A stronger property than \glqq simple\grqq \ continuity of a function.} w.r.t $\mu$, i.e. $\mu (A) = 0 \implies \lambda (A) = 0$ for all $A \in \mathscr{A}$.

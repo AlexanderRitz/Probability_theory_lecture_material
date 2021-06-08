@@ -1,0 +1,133 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{mathtools} 
+\usepackage{mathrsfs} 
+\usepackage{dsfont}
+\usepackage{enumitem}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
+\newcommand{\E}{\mbox{I\negthinspace E}}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+
+\title{Probability Theory Solutions}
+\author{Alexander Ritz}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+
+\item Exercise 
+\begin{enumerate}[label=(\roman*)]
+
+\item $\mathscr{A}_{min} = \{\emptyset, \Omega\}$, $\mathscr{A}_{max} = \mathcal{P}(\Omega)$, insofar existent.
+
+\item $\mathscr{A}_{1} = \{\emptyset, \Omega_4\}$ \\ $\mathscr{A}_{2} = \{\emptyset, \Omega_4, \{a\}, \{b, c, d\}\}$ \\ $\mathscr{A}_{3} = \{\emptyset, \Omega_4, \{b\}, \{a, c, d\}\}$ \\ $\mathscr{A}_{4} = \{\emptyset, \Omega_4, \{c\}, \{a, b, d\}\}$ \\ $\mathscr{A}_{5} = \{\emptyset, \Omega_4, \{d\}, \{a, b, c\}\}$ \\ $\mathscr{A}_{6} = \{\emptyset, \Omega_4, \{a, b\}, \{c, d\}\}$ \\ $\mathscr{A}_{7} = \{\emptyset, \Omega_4, \{a, c\}, \{b, d\}\}$ \\ $\mathscr{A}_{8} = \{\emptyset, \Omega_4, \{a, d\}, \{b, c\}\}$ \\ $\mathscr{A}_{9} = \{\emptyset, \Omega_4, \{a\}, \{b\} \{c, d\}, \{b, c, d\} \{a, c, d\}, \{a, b\}\}$ \\ $\mathscr{A}_{10} = \{\emptyset, \Omega_4, \{a\}, \{c\} \{b, d\}, \{b, c, d\} \{a, b, d\}, \{a, c\}\}$ \\ $\mathscr{A}_{11} = \{\emptyset, \Omega_4, \{a\}, \{d\} \{b, c\}, \{b, c, d\} \{a, b, c\}, \{a, d\}\}$ \\ $\mathscr{A}_{12} = \{\emptyset, \Omega_4, \{b\}, \{c\} \{a, d\}, \{a, c, d\} \{a, b, d\}, \{b, c\}\}$ \\ $\mathscr{A}_{13} = \{\emptyset, \Omega_4, \{b\}, \{d\} \{a, c\}, \{a, c, d\} \{a, b, c\}, \{b, b\}\}$ \\ $\mathscr{A}_{14} = \{\emptyset, \Omega_4, \{c\}, \{d\} \{a, b\}, \{a, b, d\} \{a, b, c\}, \{c, d\}\}$ \\ $\mathscr{A}_{15} = \mathcal{P}(\Omega_4)$ 
+
+\item Simply sketch what an element of the $\sigma$-algebra would look like and which objects are implied to be elements of it due to this. Refer to the definition of a $\sigma$-algebra if the construction is unclear.
+
+\item We were able to explicitly construct the algebra in (ii) due to the finite number of elements in $\Omega_4$. $\Omega_5$ does not only contain an infinite number of elements, but also uncountably many. As such, the explicit notation of the $\sigma$-algebra becomes impossible.
+
+\end{enumerate}
+
+
+\item Exercise
+
+Note that we may speak of measurability when actually meaning $\mathscr{A}$-measurability. Since the context implies which $\sigma$-algebra underlies our notion of measurability, this is done in order to make the solution somewhat less dense in notation and therefore, hopefully, more readable.
+
+\begin{enumerate}[label=(\roman*)]
+
+\item Trivially follows from the definition: $f$ is $\mathscr{A}$-measurable, therefore: \[
+\{f \leq \alpha\} \in \mathscr{A}
+\] 
+Since $\mathscr{A} \subset \mathscr{B}$,  $\mathscr{B}$-measurability follows: \[
+\{f \leq \alpha\} \in \mathscr{B}
+\]
+
+\item It holds (Consider the reasons why!): \[
+\{\mathds{1}_M \leq \alpha\}=\begin{cases} \Omega\quad \text{   if } 1\leq \alpha\\
+M^{\mathrm{C}} \text{ if } 0 \leq \alpha < 1\\
+\emptyset \quad\text{ if } \alpha < 0 \end{cases}
+\]
+Due to $M^{\mathrm{C}} \in \mathscr{A} \iff M \in \mathscr{A}$, all preimages lie in $\mathscr{A}$, if and only if $M \in \mathscr{A}$ holds.
+
+\item  Solution becomes very convoluted without use of the hint. This tells us that $\{ f < r\}$ and $\{ r < g\}$ and therefore the sets $\{ f < r\} \cap \{ r < g\}$ lie in $\mathscr{A}$. From the properties of $\sigma$-algebras, it then follows that the following sets also lie in $\mathscr{A}$: \[
+\bigcup\limits_{r \in \mathbb{Q}} \{ f < r\} \cap \{ r < g\} = \{ f < g\}
+\]
+With $\{ f < g\}$ the complement $\{ f \geq g\}$ too lies in $\mathscr{A}$. Analogously it is possible to show that $\{ f \leq g\}$ lies in $\mathscr{A}$. Since $\{ f = g\} = \{f \leq g\} \cap \{ f \geq g\}$, the set $\{ f = g\}$ also lies in $\mathscr{A}$.
+
+\end{enumerate}
+
+\item Exercise 
+
+\begin{enumerate}[label=(\roman*)]
+
+\item For $\beta = 0$  the claim is trivial!? We therefore assume $\beta \neq 0$. With $r$ being an arbitrary real number, it holds: \[
+\{\alpha + \beta \cdot g \leq r\}=\begin{cases} \{g < \frac{r - \alpha}{\beta}\}\quad \text{ if } \beta > 0\\
+\{g > \frac{r - \alpha}{\beta}\} \text{ if } \beta < 0\\
+\{\alpha < r\} \quad\text{ if } \beta = 0 \end{cases}
+\]
+In each case an element of $\mathscr{A}$ is specified. In the first two cases based on the measurability of $g$, in the third case since either $\{\alpha < r\} = \emptyset $ or $\{\alpha < r\} = \Omega $ holds.
+
+\item Setting $\beta = -1$ and following along the proof in (i), it follows that the function $\alpha - g$ is measurable for all $\alpha \in \mathbb{R}$. Due to the measurability of $f$, based on Exercise 2 (iii) it then follows that for all $\alpha \in \mathbb{R}$  the set\[
+\{f \leq \alpha - g\} = \{f + g \leq \alpha\}
+\]
+lies within the $\sigma$-Algebra $\mathscr{A}$. Hence the claim follows.
+
+\item It holds: \[
+\{f^2 \geq \alpha\}=\begin{cases} \Omega \quad \text{ if } \alpha \leq 0\\
+\{f \geq \sqrt{\alpha}\} \cup \{f \leq - \sqrt{\alpha}\} \text{ if } \alpha > 0 \end{cases}
+\]
+Since the sets $\{f \geq \sqrt{\alpha}\}$ and $\{f \leq - \sqrt{\alpha}\}$ lie in $\mathscr{A}$ due to the measurability of $f$, $\{f^2 \geq \alpha\}$ too lies in $\mathscr{A}$.
+
+\item Since according to parts (i) and (ii)  $\frac{1}{2}(f + g)$ and $\frac{1}{2}(f - g)$ are measurable, the claim follows from part (iii) by the following representation (Check the equality yourself!) \[
+f \cdot g = \frac{1}{4}(f + g)^2 - \frac{1}{4}(f - g)^2
+\]
+
+\end{enumerate}
+
+\item Exercise 
+
+\begin{enumerate}[label=(\roman*)]
+
+\item Basically solved within the exercise text. Check the definition of a density and take a look at the given distribution function.
+
+\item For $z \leq 0$ it holds that $\{ Y \leq z\} = \emptyset$ and therefore $F_Y (z) = 0$. \\ For $z \geq 1$ it holds that $\{ Y \leq z\} = \Omega$ and therefore $F_Y (z) = 1$. \\ For $0 < z <1$ it holds that 
+\begin{align*} 
+F_Y (z) &= P(\{ Y \leq z\})  \\ 
+&=  P(\{ 1 - \exp (-c \cdot X) \leq z\}) \\
+&= P(\{ X \leq -\frac{\ln (1 - z)}{c}\}) \\
+&= 1- \exp (\lambda \cdot \frac{\ln (1 - z)}{c}) \\
+&= 1 - (1 - z)^{\frac{\lambda}{c}}
+\end{align*}
+For $c = \lambda$ a uniform distribution is constructed.
+
+\item Partial integration, i.e. integration by parts, immediately results in $\E (X) =  \frac{1}{\lambda}$. \\ Analogously, twofold partial integration results in $\Var (X) = \frac{1}{\lambda^2}$. Values only exist for $\lambda > 0$.
+
+\item Memorylessness is described by the property.
+\begin{align*} 
+P(X \leq s+ t \mid X > s) &= \frac{P(\{ X \leq s + t\} \cap \{ X > s\} )}{P(\{ X >s\})}  \\ 
+&=  \frac{P(\{s < X \leq s + t\})}{1 - F_X (s)} \\
+&= \frac{F_X (s + t) - F_X (s)}{1 - F_X (s)} \\
+&= 1 - \exp (- \lambda \cdot t) \\
+&= F_X (t) = P(X \leq t)
+\end{align*}
+
+\end{enumerate}
+
+
+\item Aufgabe  \\
+Simply consult the discussed theory. Necessary components supposed to be explained: sample space, event vs. result, $\sigma$-algebra, probability measure, domain and image of the random variable, measurability.
+
+
+\end{enumerate}
+\end{document}

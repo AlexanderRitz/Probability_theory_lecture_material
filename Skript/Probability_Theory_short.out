@@ -1,16 +1,22 @@
-\BOOKMARK [1][-]{section.1}{Preface}{}% 1
-\BOOKMARK [1][-]{section.2}{Sample spaces}{}% 2
-\BOOKMARK [1][-]{section.3}{-algebras}{}% 3
-\BOOKMARK [1][-]{section.4}{Probability spaces}{}% 4
-\BOOKMARK [1][-]{section.5}{Random Variables and Measurability}{}% 5
-\BOOKMARK [1][-]{section.6}{Distribution of Random Variables}{}% 6
-\BOOKMARK [1][-]{section.7}{Moments of random variables}{}% 7
-\BOOKMARK [1][-]{appendix.A}{Prerequisite Knowledge}{}% 8
-\BOOKMARK [2][-]{subsection.A.1}{Formal logic}{appendix.A}% 9
-\BOOKMARK [3][-]{subsubsection.A.1.1}{Logical connectives}{subsection.A.1}% 10
-\BOOKMARK [3][-]{subsubsection.A.1.2}{Quantifiers}{subsection.A.1}% 11
-\BOOKMARK [2][-]{subsection.A.2}{Basic set theory}{appendix.A}% 12
-\BOOKMARK [2][-]{subsection.A.3}{Continuity of functions}{appendix.A}% 13
-\BOOKMARK [1][-]{appendix.B}{Integration theory and Radon-Nikodym theorem}{}% 14
-\BOOKMARK [2][-]{subsection.B.1}{Riemann-Stieltjes integral}{appendix.B}% 15
-\BOOKMARK [2][-]{subsection.B.2}{Radon-Nikodym theorem}{appendix.B}% 16
+\BOOKMARK [1][-]{section.1}{Sample spaces}{}% 1
+\BOOKMARK [1][-]{section.2}{-algebras}{}% 2
+\BOOKMARK [1][-]{section.3}{Probability spaces}{}% 3
+\BOOKMARK [1][-]{section.4}{Random Variables and Measurability}{}% 4
+\BOOKMARK [1][-]{section.5}{Distribution of Random Variables}{}% 5
+\BOOKMARK [1][-]{section.6}{Moments of random variables}{}% 6
+\BOOKMARK [1][-]{section.7}{Convergence of Random Variables}{}% 7
+\BOOKMARK [2][-]{subsection.7.1}{Convergence in Probability}{section.7}% 8
+\BOOKMARK [2][-]{subsection.7.2}{Convergence in Distribution}{section.7}% 9
+\BOOKMARK [2][-]{subsection.7.3}{Convergence in rth Mean}{section.7}% 10
+\BOOKMARK [2][-]{subsection.7.4}{Continuous Mapping and Slutsky's Theorem}{section.7}% 11
+\BOOKMARK [2][-]{subsection.7.5}{Law of Large Numbers}{section.7}% 12
+\BOOKMARK [2][-]{subsection.7.6}{Central Limit Theorem}{section.7}% 13
+\BOOKMARK [1][-]{appendix.A}{Prerequisite Knowledge}{}% 14
+\BOOKMARK [2][-]{subsection.A.1}{Formal logic}{appendix.A}% 15
+\BOOKMARK [3][-]{subsubsection.A.1.1}{Logical connectives}{subsection.A.1}% 16
+\BOOKMARK [3][-]{subsubsection.A.1.2}{Quantifiers}{subsection.A.1}% 17
+\BOOKMARK [2][-]{subsection.A.2}{Basic set theory}{appendix.A}% 18
+\BOOKMARK [2][-]{subsection.A.3}{Continuity of functions}{appendix.A}% 19
+\BOOKMARK [1][-]{appendix.B}{Integration theory and Radon-Nikodym theorem}{}% 20
+\BOOKMARK [2][-]{subsection.B.1}{Riemann-Stieltjes integral}{appendix.B}% 21
+\BOOKMARK [2][-]{subsection.B.2}{Radon-Nikodym theorem}{appendix.B}% 22
